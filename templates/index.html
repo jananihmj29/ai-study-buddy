@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Study Buddy</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>🎓 AI Study Buddy</h1>
+
+            <p>
+                Your AI-powered study assistant
+            </p>
+        </header>
+
+
+        <main>
+
+            <section class="card">
+
+                <h2>What do you want to study?</h2>
+
+                <p class="description">
+                    Enter your notes, question, topic, or answer below.
+                </p>
+
+
+                <textarea
+                    id="content"
+                    placeholder="Example: Photosynthesis is the process by which plants convert light energy into chemical energy..."
+                ></textarea>
+
+
+                <div class="tools">
+
+                    <button
+                        onclick="generateResponse('summarise')">
+                        📝 Summarise Notes
+                    </button>
+
+
+                    <button
+                        onclick="generateResponse('quiz')">
+                        ❓ Generate Quiz
+                    </button>
+
+
+                    <button
+                        onclick="generateResponse('explain')">
+                        💡 Explain Concept
+                    </button>
+
+
+                    <button
+                        onclick="generateResponse('improve')">
+                        ✍️ Improve Answer
+                    </button>
+
+                </div>
+
+
+                <div id="message"></div>
+
+            </section>
+
+
+            <section
+                id="result-section"
+                class="card result-card">
+
+                <h2>🤖 AI Response</h2>
+
+                <div
+                    id="result"
+                    class="result">
+                    Your generated response will appear here.
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <footer>
+
+            <p>
+                AI Study Buddy • Built for student learning
+            </p>
+
+        </footer>
+
+    </div>
+
+
+    <script
+        src="{{ url_for('static', filename='script.js') }}">
+    </script>
+
+</body>
+
+</html>
