@@ -182,7 +182,6 @@ STUDENT ANSWER:
 
 @app.route("/")
 def home():
-
     return render_template("index.html")
 
 
@@ -208,9 +207,7 @@ def generate():
         content = data.get("content", "").strip()
 
 
-        # ------------------------------
-        # INPUT VALIDATION
-        # ------------------------------
+        # Input validation
 
         if not content:
 
@@ -241,9 +238,7 @@ def generate():
             }), 400
 
 
-        # ------------------------------
-        # BUILD STRUCTURED PROMPT
-        # ------------------------------
+        # Build structured prompt
 
         prompt = build_prompt(
             task,
@@ -258,9 +253,7 @@ def generate():
             }), 400
 
 
-        # ------------------------------
-        # CALL GEMINI API
-        # ------------------------------
+        # Call Gemini API
 
         response = client.models.generate_content(
 
@@ -271,9 +264,7 @@ def generate():
         )
 
 
-        # ------------------------------
-        # GET AI RESPONSE
-        # ------------------------------
+        # Get generated response
 
         result = response.text
 
@@ -285,9 +276,7 @@ def generate():
             }), 500
 
 
-        # ------------------------------
-        # SEND RESPONSE TO FRONTEND
-        # ------------------------------
+        # Send result to frontend
 
         return jsonify({
             "result": result
@@ -301,7 +290,7 @@ def generate():
         return jsonify({
             "error":
                 "The AI service could not process your request. "
-                "Please check your API key and available API access."
+                "Please try again later."
         }), 500
 
 
@@ -311,6 +300,10 @@ def generate():
 
 if __name__ == "__main__":
 
+    port = int(os.environ.get("PORT", 5000))
+
     app.run(
-        debug=True
+        host="0.0.0.0",
+        port=port,
+        debug=False
     )
